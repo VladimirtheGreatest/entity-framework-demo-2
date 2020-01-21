@@ -1,6 +1,30 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+input {
+    max-width: 280px;
+}
+
+.entry {
+    min-width: 250px;
+    display: inline-block;
+}
+
+.details, .edit, .delete {
+    cursor: pointer;
+    color: #337ab7;
+    text-decoration: underline;
+}
+
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+#content {
+    min-height: 500px;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;

@@ -2,7 +2,8 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    int[] array = new int[] { 1, 2, 3, 6, 3, 8 };
+    object[] array = { ViewData["MyList"] };
+    var myList = ViewData["MyList"];
 }
 
     <div class="text-center">
@@ -16,11 +17,34 @@
             </div>
         }
 
-        @for (var i = 0; i < array.Length; i++)
-        {
-            var person = array[i];
-            <p>Age: @person</p>
-        }
+
+        <h2>@ViewData["MyString"]</h2>
+        <p>The answer to everything is @ViewData["MyNumber"]</p>
+        <p>@ViewData["MyList"]</p>
+        <p>@ViewData["MyList2"]</p>
+
+        @*<div class="container">
+            <div class="row">
+                @foreach (var item in myList)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                    <h3>Id :@item.Id</h3>
+                    <h3>First name: @item.FirstName</h3>
+                    <h3>Last Name:@item.LastName</h3>
+                    <h3>Age: @item.Age</h3>
+                    <h3>Email:@item.EmailAddress</h3>
+                    <h3>Street address: @item.StreetAddress</h3>
+                    <h3>City:@item.City</h3>
+                    <h3>State:@item.State</h3>
+                    <h3>Zip code: @item.ZipCode</h3>
+                    </div>
+                }
+            </div>
+        </div>*@
+
 
         <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
+
+
+
