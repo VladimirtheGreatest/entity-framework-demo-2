@@ -21,8 +21,8 @@ namespace EDDataAccessLibrary.Models
         [MaxLength(50)]
         public string State { get; set; }
         [Required]
-        [MaxLength(10)]
-        [Column(TypeName = "varchar(10)")]
+        [MaxLength(50)]
+        [Column(TypeName = "varchar(50)")]
         public string ZipCode { get; set; }
     }
 }

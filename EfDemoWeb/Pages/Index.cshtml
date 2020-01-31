@@ -1,50 +1,36 @@
 ﻿@page
 @model IndexModel
+@using EDDataAccessLibrary.Models
 @{
     ViewData["Title"] = "Home page";
-    object[] array = { ViewData["MyList"] };
-    var myList = ViewData["MyList"];
+     string file = System.IO.File.ReadAllText("generated.json");
+     var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Person>>(file);
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <h1>@DateTime.Now</h1>
-        @using (Html.BeginForm())
-        {
-            <div>
-                Email: <input type="email" id="Email" value="">
-                <button>Register</button>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h1>@DateTime.Now</h1>
+    @using (Html.BeginForm())
+    {
+        <div>
+            Email: <input type="email" id="Email" value="">
+            <button>Register</button>
+        </div>
+    }
+    <div class="container">
+        <div class="row">
+            @foreach (var item in items)
+            {
+            <div class="col-lg-6 col-sm-6 p-5">
+                <h3>First name: @item.FirstName</h3>
+                <h3>Last Name:@item.LastName</h3>
+                <p>Age: @item.Age</p>
             </div>
-        }
-
-
-        <h2>@ViewData["MyString"]</h2>
-        <p>The answer to everything is @ViewData["MyNumber"]</p>
-        <p>@ViewData["MyList"]</p>
-        <p>@ViewData["MyList2"]</p>
-
-        @*<div class="container">
-            <div class="row">
-                @foreach (var item in myList)
-                {
-                    <div class="col-lg-3 col-sm-6">
-                    <h3>Id :@item.Id</h3>
-                    <h3>First name: @item.FirstName</h3>
-                    <h3>Last Name:@item.LastName</h3>
-                    <h3>Age: @item.Age</h3>
-                    <h3>Email:@item.EmailAddress</h3>
-                    <h3>Street address: @item.StreetAddress</h3>
-                    <h3>City:@item.City</h3>
-                    <h3>State:@item.State</h3>
-                    <h3>Zip code: @item.ZipCode</h3>
-                    </div>
-                }
-            </div>
-        </div>*@
-
-
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            }
+        </div>
     </div>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
 
 
 
