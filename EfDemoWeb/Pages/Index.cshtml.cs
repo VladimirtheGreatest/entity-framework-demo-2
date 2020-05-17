@@ -7,6 +7,7 @@ using EDDataAccessLibrary.DataAccess;
 using EDDataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace EfDemoWeb.Pages
@@ -25,6 +26,14 @@ namespace EfDemoWeb.Pages
         public void OnGet()
         {
             LoadSampleData();
+
+            var people = _db.People.Include(x => x.Addresses).Include(x => x.EmailAddresses).OrderBy(x => x.FirstName).ToList();
+            ViewData["List"] = people;
+        }
+
+        private bool ApprovedAge(int age)
+        {
+            return (age >= 18 && age <= 65);
         }
 
         private void LoadSampleData()

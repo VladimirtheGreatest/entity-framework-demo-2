@@ -3,34 +3,57 @@
 @using EDDataAccessLibrary.Models
 @{
     ViewData["Title"] = "Home page";
-     string file = System.IO.File.ReadAllText("generated.json");
-     var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Person>>(file);
+    string file = System.IO.File.ReadAllText("generated.json");
+    var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Person>>(file);
+
+    var people = (List<Person>)ViewData["List"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h1>@DateTime.Now</h1>
-    @using (Html.BeginForm())
-    {
-        <div>
-            Email: <input type="email" id="Email" value="">
-            <button>Register</button>
-        </div>
-    }
-    <div class="container">
-        <div class="row">
-            @foreach (var item in items)
-            {
-            <div class="col-lg-6 col-sm-6 p-5">
-                <h3>First name: @item.FirstName</h3>
-                <h3>Last Name:@item.LastName</h3>
-                <p>Age: @item.Age</p>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <h1>@DateTime.Now</h1>
+
+
+        <h1>This List of people is rendered through razer viewmodel engine</h1>
+        <div class="container">
+            <div class="row">
+                @foreach (var person in people)
+                {
+                <div class="col-lg-6 col-sm-6 p-5">
+                    <h3>First name: @person.FirstName</h3>
+                    <h3>Last Name:@person.LastName</h3>
+                    <p>Age: @person.Age</p>
+                    @foreach (var item in person.Addresses)
+                    {
+                        <p>Street Address: @item.StreetAddress</p>
+                        <p>City: @item.City</p>
+                        <p>Zip Code: @item.ZipCode</p>
+                    }
+                    @foreach (var item in person.EmailAddresses)
+                    {
+                        <p>Email: @item.EmailAddress</p>
+                    }
+                </div>
+                }
             </div>
-            }
         </div>
+
+
+        <h1>This List of people is injected and deserialized directly from json</h1>
+        <div class="container">
+            <div class="row">
+                @foreach (var item in items)
+                {
+                    <div class="col-lg-6 col-sm-6 p-5">
+                        <h3>First name: @item.FirstName</h3>
+                        <h3>Last Name:@item.LastName</h3>
+                        <p>Age: @item.Age</p>
+                    </div>
+                }
+            </div>
+        </div>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
 
 
