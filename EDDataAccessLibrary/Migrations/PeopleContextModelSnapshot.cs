@@ -15,7 +15,7 @@ namespace EDDataAccessLibrary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -113,7 +113,7 @@ namespace EDDataAccessLibrary.Migrations
             modelBuilder.Entity("EDDataAccessLibrary.Models.Email", b =>
                 {
                     b.HasOne("EDDataAccessLibrary.Models.Person", null)
-                        .WithMany("Email")
+                        .WithMany("EmailAddresses")
                         .HasForeignKey("PersonId");
                 });
 #pragma warning restore 612, 618
